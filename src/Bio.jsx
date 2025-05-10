@@ -375,7 +375,6 @@ export default function LandingPage() {
         <Divider sx={{ my: 4 }} />
 
         {/* Contact Section */}
-        {/* Contact Section */}
         <Container id="contact" sx={{ py: 8, textAlign: "center" }}>
           <Typography variant="h4" align="center" gutterBottom>
             CONTACT
