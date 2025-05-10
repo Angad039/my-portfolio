@@ -20,9 +20,9 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import CodeIcon from '@mui/icons-material/Code'
+import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import CodeIcon from "@mui/icons-material/Code";
 import stateStreetLogo from "./assets/stateStreet.png";
 import kiitLogo from "./assets/kiit.png";
 import resumeUrl from "./assets/AngadSinghResume.pdf";
@@ -52,6 +52,8 @@ export default function LandingPage() {
     "Azure",
     "Splunk",
     "Dynatrace",
+    "Kibana",
+    "Grafana",
   ];
 
   const experienceEntries = [
@@ -64,8 +66,7 @@ export default function LandingPage() {
       bullets: [
         "Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.",
         "Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.",
-        "Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities.",
-        "Dynatrace integration for Terraform Enterprise monitoring.",
+        "Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities. Dynatrace integration for Terraform Enterprise monitoring.",
       ],
     },
     {
@@ -159,7 +160,7 @@ export default function LandingPage() {
               sx={{ width: 120, height: 120, mb: 2, border: "4px solid #fff" }}
             />
             <Typography variant="h2" color="#fff" gutterBottom>
-              Hi, I&apos;m Angad
+              Hi, I&apos;m Angad Pal Singh
             </Typography>
             <Typography variant="h5" color="#fff" gutterBottom>
               Full Stack Engineer & DevOps Enthusiast
@@ -200,9 +201,8 @@ export default function LandingPage() {
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 2,
               mt: 4,
             }}
@@ -220,7 +220,7 @@ export default function LandingPage() {
                     alignItems: "center",
                     border: `2px solid ${color}`,
                     borderRadius: 2,
-                    p: 1,
+                    p: 2,
                   }}
                 >
                   <CodeIcon sx={{ mr: 1, color }} />
@@ -375,33 +375,78 @@ export default function LandingPage() {
         <Divider sx={{ my: 4 }} />
 
         {/* Contact Section */}
-        <Container id="contact" sx={{ py: 8 }}>
-          <Typography variant="h4" align="center" gutterBottom>
+        {/* Contact Section */}
+        <Container id="contact" sx={{ py: 8, textAlign: "center" }}>
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             CONTACT
           </Typography>
           <Box
-            sx={{ display: "flex", justifyContent: "center", gap: 4, mt: 2 }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 4,
+              flexWrap: "wrap",
+              mt: 2,
+            }}
           >
-            <Link
-              href="mailto:as2526019@gmail.com"
-              sx={{ display: "flex", alignItems: "center", color: "inherit" }}
-            >
-              <EmailIcon sx={{ mr: 1 }} /> as2526019@gmail.com
-            </Link>
-            <Link
-              href="tel:+916264844611"
-              sx={{ display: "flex", alignItems: "center", color: "inherit" }}
-            >
-              <PhoneIcon sx={{ mr: 1 }} /> +91-6264844611
-            </Link>
-            <Link
+            <Button
+              component="a"
               href="https://www.linkedin.com/in/angad-singh-3626241ba/"
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ display: "flex", alignItems: "center", color: "inherit" }}
+              variant="contained"
+              startIcon={<LinkedInIcon />}
+              sx={{
+                bgcolor: theme.palette.primary.main,
+                color: "#fff",
+                px: 4,
+                py: 2,
+                borderRadius: 2,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": { bgcolor: theme.palette.primary.dark },
+              }}
             >
-              <LinkedInIcon sx={{ mr: 1 }} /> LinkedIn
-            </Link>
+              LinkedIn
+            </Button>
+            <Button
+              component="a"
+              href="https://github.com/Angad039"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="contained"
+              startIcon={<GitHubIcon />}
+              sx={{
+                bgcolor: theme.palette.primary.main,
+                color: "#fff",
+                px: 4,
+                py: 2,
+                borderRadius: 2,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": { bgcolor: theme.palette.primary.dark },
+              }}
+            >
+              GitHub
+            </Button>
+            <Button
+              component="a"
+              href="mailto:as2526019@gmail.com"
+              variant="contained"
+              startIcon={<EmailIcon />}
+              sx={{
+                bgcolor: theme.palette.primary.main,
+                color: "#fff",
+                px: 4,
+                py: 2,
+                borderRadius: 2,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": { bgcolor: theme.palette.primary.dark },
+              }}
+            >
+              Email
+            </Button>
           </Box>
         </Container>
       </Box>
