@@ -58,18 +58,6 @@ export default function LandingPage() {
 
   const experienceEntries = [
     {
-      role: "Associate",
-      company: "State Street Corporation",
-      date: "Jan 2022 – Mar 2024",
-      type: "Full-time",
-      logo: stateStreetLogo,
-      bullets: [
-        "Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.",
-        "Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.",
-        "Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities. Dynatrace integration for Terraform Enterprise monitoring.",
-      ],
-    },
-    {
       role: "Senior Associate",
       company: "State Street Corporation",
       date: "Mar 2024 – Present",
@@ -80,6 +68,18 @@ export default function LandingPage() {
         "Security: Conducted vulnerability scans using Trivy, Black Duck, and AquaSec Cloud, and performed static code analysis with Veracode to enhance security.",
         "Image Bakery: Developed Linux OS VM and container images compliant with CIS and NIST standards, used enterprise-wide for secure deployments.",
         "API Integration & Optimization: Designed scalable APIs for configuration compliance and optimized multi-cloud integration.",
+      ],
+    },
+    {
+      role: "Associate",
+      company: "State Street Corporation",
+      date: "Jan 2022 – Mar 2024",
+      type: "Full-time",
+      logo: stateStreetLogo,
+      bullets: [
+        "Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.",
+        "Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.",
+        "Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities. Dynatrace integration for Terraform Enterprise monitoring.",
       ],
     },
   ];
