@@ -21,6 +21,7 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import resumeUrl from './assets/AngadSinghResume.pdf'
 
 export default function LandingPage() {
   const [mode, setMode] = useState('light')
@@ -115,8 +116,8 @@ export default function LandingPage() {
             <Typography variant="h2" gutterBottom>Hi, I&#39;m Angad Pal Singh</Typography>
             <Typography variant="h5" gutterBottom>Full Stack Engineer & DevOps Enthusiast</Typography>
             <Box sx={{ mt: 4 }}>
-              <Button component="a" href="/AngadSinghResume.pdf" target="_blank" rel="noopener noreferrer" variant="contained" sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}>
-                Download Resume
+              <Button component="a" href={resumeUrl} target="_blank" rel="noopener noreferrer" variant="contained" sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}>
+                Resume
               </Button>
               <Button variant="outlined" href="#contact" sx={{ borderColor: '#fff', color: '#fff' }}>
                 Get in Touch
