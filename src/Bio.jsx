@@ -10,8 +10,9 @@ import {
   Link,
   CssBaseline,
   useMediaQuery,
-  IconButton,
- Divider} from '@mui/material'
+  Divider,
+  IconButton
+} from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -21,6 +22,7 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import CodeIcon from '@mui/icons-material/Code'
 import resumeUrl from './assets/AngadSinghResume.pdf'
 
 export default function LandingPage() {
@@ -30,11 +32,17 @@ export default function LandingPage() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const sections = [
-    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' }
+  ]
+
+  const skills = [
+    'React.js', 'JavaScript', 'TypeScript',
+    'Material UI', 'Node.js', 'Express.js', 'Sequelize',
+    'Terraform', 'Ansible', 'GitHub Actions',
+    'Docker', 'AWS', 'Azure', 'Splunk', 'Dynatrace'
   ]
 
   const experienceEntries = [
@@ -46,9 +54,8 @@ export default function LandingPage() {
       bullets: [
         'Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.',
         'Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.',
-        'Image Monitoring Automation: Created Image Bakery to fetch and display container images from JFrog, Azure ACR, and AWS ECR with real-time deployment trend tracking.',
-        'Security & Access Control: Implemented RBAC and automated health tracking for Ansible and Terraform services, improving security and reducing manual intervention.',
-        'Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities. Dynatrace integration for Terraform Enterprise monitoring.'
+        'Dynatrace integration for Terraform Enterprise monitoring.',
+        'Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities.'
       ]
     },
     {
@@ -60,9 +67,7 @@ export default function LandingPage() {
         'CI/CD Pipelines: Utilized Jenkins, GitHub Actions, built and deployed Visualization portal, integrating DevSecOps principles.',
         'Security: Conducted vulnerability scans using Trivy, Black Duck, and AquaSec Cloud, and performed static code analysis with Veracode to enhance security.',
         'Image Bakery: Developed Linux OS VM and container images compliant with CIS and NIST standards, used enterprise-wide for secure deployments.',
-        'API Integration & Optimization: Designed scalable APIs for configuration compliance and optimized multi-cloud integration, improving responsiveness and data reliability.',
-        'CI/CD & Deployment Streamlining: Leveraged GitHub Actions and Ansible Tower to automate deployments and accelerate release cycles.',
-        'Containerization: Implemented Docker-based deployments, improving scalability, reliability, and ensuring consistent performance.'
+        'API Integration & Optimization: Designed scalable APIs for configuration compliance and optimized multi-cloud integration.'
       ]
     }
   ]
@@ -84,15 +89,9 @@ export default function LandingPage() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ bgcolor: 'background.default', color: 'text.primary' }}>
+
         {/* Hero + Nav */}
-        <Box
-          id="hero"
-          component={motion.div}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          sx={{ width: '100vw', height: '100vh', background: heroBackground, position: 'relative', overflow: 'hidden' }}
-        >
+        <Box id="hero" component={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} sx={{ width: '100vw', height: '100vh', background: heroBackground, position: 'relative', overflow: 'hidden' }}>
           <AppBar position="absolute" color="transparent" elevation={0} sx={{ backdropFilter: 'blur(10px)' }}>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
               <IconButton onClick={toggleColorMode} color="inherit">
@@ -107,25 +106,38 @@ export default function LandingPage() {
               )}
             </Toolbar>
           </AppBar>
-          <Container
-            maxWidth={false}
-            disableGutters
-            sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', px: 4 }}
-          >
+          <Container maxWidth={false} disableGutters sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', px: 4 }}>
             <Avatar src="/avatar.jpg" alt="Angad" sx={{ width: 120, height: 120, mb: 2, border: '4px solid #fff' }} />
-            <Typography variant="h2" gutterBottom>Hi, I&#39;m Angad Pal Singh</Typography>
+            <Typography variant="h2" gutterBottom>Hi, I&#39;m Angad</Typography>
             <Typography variant="h5" gutterBottom>Full Stack Engineer & DevOps Enthusiast</Typography>
             <Box sx={{ mt: 4 }}>
-              <Button component="a" href={resumeUrl} target="_blank" rel="noopener noreferrer" variant="contained" sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}>
-                Resume
-              </Button>
-              <Button variant="outlined" href="#contact" sx={{ borderColor: '#fff', color: '#fff' }}>
-                Get in Touch
-              </Button>
+              <Button component="a" href={resumeUrl} target="_blank" rel="noopener noreferrer" variant="contained" sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}>Resume</Button>
+              <Button variant="contained" href="#contact" sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}>Get in Touch</Button>
             </Box>
           </Container>
+        </Box>
+
         <Divider sx={{ my: 4 }} />
-</Box>
+
+        {/* Skills Section */}
+        <Container id="skills" sx={{ py: 8 }}>
+          <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>SKILLS</Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, mt: 4 }}>
+            {skills.map((skill, idx) => {
+              const color = idx % 2 === 0 ? theme.palette.secondary.main : theme.palette.primary.light
+              return (
+                <Box key={skill} sx={{
+                  display: 'flex', alignItems: 'center', border: `2px solid ${color}`, borderRadius: 2, p: 1, 
+                }}>
+                  <CodeIcon sx={{ mr: 1, color }} />
+                  <Typography>{skill}</Typography>
+                </Box>
+              )
+            })}
+          </Box>
+        </Container>
+
+        <Divider sx={{ my: 4 }} />
 
         {/* Experience Section */}
         <Container id="experience" sx={{ py: 8 }}>
@@ -148,6 +160,8 @@ export default function LandingPage() {
           })}
         </Container>
 
+        <Divider sx={{ my: 4 }} />
+
         {/* Education Section */}
         <Container id="education" sx={{ py: 8 }}>
           <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>EDUCATION</Typography>
@@ -163,6 +177,8 @@ export default function LandingPage() {
             )
           })}
         </Container>
+
+        <Divider sx={{ my: 4 }} />
 
         {/* Contact Section */}
         <Container id="contact" sx={{ py: 8 }}>
