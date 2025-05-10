@@ -1,167 +1,237 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
-  Box,
-  Avatar,
+  AppBar,
+  Toolbar,
   Typography,
+  Button,
+  Box,
+  Container,
+  Avatar,
   Link,
-  Card,
-  CardContent,
+  CssBaseline,
+  useTheme,
+  useMediaQuery,
   List,
   ListItem,
-  ListItemText,
-  Divider,
-  IconButton,
-  CssBaseline,
+  ListItemText
 } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import EmailIcon from '@mui/icons-material/Email'
-import PhoneIcon from '@mui/icons-material/Phone'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
+import { motion } from 'framer-motion'
+import resumeUrl from './assets/AngadSinghResume.pdf'
 
-export default function Bio() {
-  const [mode, setMode] = useState('light')
-  const theme = createTheme({ palette: { mode } })
-  const toggleColorMode = () => setMode(prev => (prev === 'light' ? 'dark' : 'light'))
+export default function LandingPage() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const sections = [
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' }
+  ]
+
+  const bioText = `Results-driven Full Stack Engineer with 3+ years of experience building scalable, secure web applications using React.js, Node.js, Express.js, and Sequelize. Expertise in DevOps automation, CI/CD pipelines (GitHub Actions, Ansible), containerization (Docker), and real-time infrastructure monitoring.`
+
+  const skills = [
+    'React.js', 'JavaScript', 'TypeScript',
+    'Material UI', 'Node.js', 'Express.js', 'Sequelize',
+    'Terraform', 'Ansible', 'GitHub Actions', 'Docker',
+    'AWS', 'Azure', 'Splunk', 'Dynatrace'
+  ]
+
+  const experienceSections = [
     {
       title: 'Full Stack Development',
       items: [
-        'Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.',
-        'Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.',
-        'Image Monitoring Automation: Created Image Bakery to fetch and display container images from JFrog, Azure ACR, and AWS ECR with real-time deployment trend tracking.',
-        'Security & Access Control: Implemented RBAC and automated health tracking for Ansible and Terraform services, improving security and reducing manual intervention.',
-        'API Integration & Optimization: Designed scalable APIs for configuration compliance and optimized multi-cloud integration, improving responsiveness and data reliability.',
-        'CI/CD & Deployment Streamlining: Leveraged GitHub Actions and Ansible Tower to automate deployments and accelerate release cycles through robust CI/CD pipelines.',
-        'Containerization: Implemented Docker-based deployments, improving scalability, reliability, and ensuring consistent performance.',
-      ],
+        'Compliance Automation: Built automated checks for server/VM and Docker image compliance, enforcing security policies.',
+        'Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations across environments.',
+        'Image Bakery: Fetched container images from JFrog, Azure ACR, AWS ECR with trend tracking.',
+        'RBAC & Health Tracking: Automated health checks for Ansible and Terraform services.'
+      ]
     },
-    { title: 'Monitoring', items: ['Set up Dynatrace for Terraform Enterprise monitoring and integrated it with Splunk for centralized log analysis.'] },
-    { title: 'Log Management', items: ['Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities.'] },
-    { title: 'CI/CD Pipelines', items: ['Utilized Jenkins, GitHub Actions to build and deploy the Visualization portal, integrating DevSecOps principles.'] },
-    { title: 'Security', items: ['Conducted vulnerability scans using Trivy, Black Duck, and AquaSec Cloud, and performed static code analysis with Veracode to enhance security.'] },
-    { title: 'Image Bakery', items: ['Developed Linux OS VM and container images compliant with CIS and NIST standards, used enterprise-wide for secure deployments.'] },
+    {
+      title: 'Monitoring & Logs',
+      items: [
+        'Dynatrace integration for Terraform Enterprise monitoring.',
+        'Centralized log analysis using Splunk.'
+      ]
+    },
+    {
+      title: 'CI/CD & DevSecOps',
+      items: [
+        'Built pipelines using Jenkins & GitHub Actions.',
+        'Implemented DevSecOps with Trivy, Black Duck, AquaSec Cloud, and Veracode scans.'
+      ]
+    }
   ]
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
-      <Box sx={{ position: 'relative', width: '100vw', minHeight: '100vh', p: 4 }}>
-        {/* Theme Toggle */}
-        <IconButton
-          onClick={toggleColorMode}
-          color="inherit"
-          sx={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}
+      {/* Hero + Nav Container */}
+      <Box
+        id="hero"
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        sx={{
+          position: 'relative',
+          width: '100vw',
+          height: '100vh',
+          background: 'linear-gradient(135deg, #2196f3 0%, #21cbf3 100%)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Nav inside Hero */}
+        <AppBar
+          position="absolute"
+          color="transparent"
+          elevation={0}
+          sx={{ top: 0, left: 0, right: 0, backdropFilter: 'blur(10px)' }}
         >
-          {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
-        </IconButton>
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#fff' }}>
+              Angad Singh
+            </Typography>
+            {!isMobile && (
+              <Box>
+                {sections.map(sec => (
+                  <Button
+                    key={sec.id}
+                    component={Link}
+                    href={`#${sec.id}`}
+                    sx={{ color: '#fff' }}
+                  >
+                    {sec.label}
+                  </Button>
+                ))}
+                <Button
+                  variant="outlined"
+                  component={Link}
+                  href="#contact"
+                  sx={{ ml: 2, borderColor: '#fff', color: '#fff' }}
+                >
+                  Contact
+                </Button>
+              </Box>
+            )}
+          </Toolbar>
+        </AppBar>
 
-        {/* Content spans full width */}
-        {/* Header */}
-        <Box sx={{ textAlign: 'center', width: '100%' }}>
-          <Avatar sx={{ width: 96, height: 96, mx: 'auto' }}>AP</Avatar>
-          <Typography variant="h4" component="h1" my={2}>
-            Angad Pal Singh
+        {/* Hero Content */}
+        <Container
+          maxWidth={false}
+          disableGutters
+          sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#fff',
+            textAlign: 'center',
+            px: 4
+          }}
+        >
+          <Avatar
+            src="/avatar.jpg"
+            alt="Angad Singh"
+            sx={{ width: 120, height: 120, mb: 2, border: '4px solid #fff' }}
+          />
+          <Typography variant="h2" gutterBottom>
+            Hi, I&#39;m Angad
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" mb={2}>
-            Full Stack Engineer
+          <Typography variant="h5" gutterBottom>
+            Full Stack Engineer & DevOps Enthusiast
           </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 2 }}>
-            <Link href="tel:+916264844611" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
-              <PhoneIcon fontSize="small" sx={{ mr: .5 }} /> +91-6264844611
-            </Link>
-            <Link href="mailto:as2526019@gmail.com" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
-              <EmailIcon fontSize="small" sx={{ mr: .5 }} /> as2526019@gmail.com
-            </Link>
-            <Link href="#" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
-              <LocationOnIcon fontSize="small" sx={{ mr: .5 }} /> Bangalore, India
-            </Link>
-            <Link href="https://www.linkedin.com/in/angad-singh-3626241ba/" target="_blank" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
-              <LinkedInIcon fontSize="small" sx={{ mr: .5 }} /> LinkedIn
-            </Link>
+          <Box sx={{ mt: 4 }}>
+            <Button
+              variant="contained"
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ mr: 2, bgcolor: '#fff', color: '#2196f3' }}
+            >
+              Download Resume
+            </Button>
+            <Button
+              variant="outlined"
+              href="#contact"
+              sx={{ borderColor: '#fff', color: '#fff' }}
+            >
+              Get in Touch
+            </Button>
           </Box>
-        </Box>
+        </Container>
+      </Box>
 
-        <Divider sx={{ my: 4 }} />
-
-        {/* Summary */}
-        <Typography variant="body1" paragraph sx={{ mx: '10%', textAlign: 'center' }}>
-          Results-driven Full Stack Engineer with 3+ years of experience building scalable, secure web applications using React.js, Node.js, Express.js, and Sequelize. Expertise in DevOps automation, CI/CD pipelines (GitHub Actions, Ansible), containerization (Docker), and real-time infrastructure monitoring.
+      {/* About */}
+      <Container id="about" sx={{ py: 8 }}>
+        <Typography variant="h4" gutterBottom align="center">
+          About Me
         </Typography>
-
-        <Divider sx={{ my: 4 }} />
-
-        {/* Skills */}
-        <Typography variant="h6" gutterBottom sx={{ textAlign: 'center' }}>
-          Technical Skills
+        <Typography variant="body1" align="center" sx={{ maxWidth: 600, mx: 'auto' }}>
+          {bioText}
         </Typography>
-        <List dense sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 4, mx: '10%' }}>
-          {[
-            'React.js · JavaScript · TypeScript',
-            'Material UI (MUI)',
-            'Node.js · Express.js · Sequelize',
-            'Terraform · Ansible · GitHub Actions',
-            'AWS · Azure · Docker',
-            'REST APIs · JFrog · GitHub APIs',
-          ].map(skill => (
-            <ListItem key={skill} sx={{ width: 'auto', pl: 0 }}>
-              <ListItemText primary={skill} />
-            </ListItem>
+      </Container>
+
+      {/* Skills */}
+      <Container id="skills" sx={{ py: 8, backgroundColor: theme.palette.action.hover }}>
+        <Typography variant="h4" gutterBottom align="center">
+          Skills
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, mt: 4 }}>
+          {skills.map(skill => (
+            <Box key={skill} sx={{ px: 2, py: 1, border: '1px solid', borderColor: 'text.primary', borderRadius: 2 }}>
+              <Typography>{skill}</Typography>
+            </Box>
           ))}
-        </List>
+        </Box>
+      </Container>
 
-        <Divider sx={{ my: 4 }} />
-
-        {/* Professional Experience */}
-        <Typography variant="h6" gutterBottom sx={{ textAlign: 'center' }}>
+      {/* Experience */}
+      <Container id="experience" sx={{ py: 8 }}>
+        <Typography variant="h4" gutterBottom align="center">
           Professional Experience
         </Typography>
-        <Card variant="outlined" sx={{ mx: '10%', mb: 4 }}>
-          <CardContent>
-            <Typography variant="subtitle1" fontWeight="bold" sx={{ textAlign: 'center', mb: 1 }}>
-              Sr. Associate, State Street Corporation
+        {experienceSections.map(section => (
+          <Box key={section.title} sx={{ maxWidth: 600, mx: 'auto', mb: 4 }}>
+            <Typography variant="h6" gutterBottom>
+              {section.title}
             </Typography>
-            <Typography variant="caption" color="text.secondary" display="block" sx={{ textAlign: 'center', mb: 3 }}>
-              Jan 2022 – Present
-            </Typography>
+            <List>
+              {section.items.map(item => (
+                <ListItem key={item} sx={{ pl: 0 }}>
+                  <ListItemText primary={item} />
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        ))}
+      </Container>
 
-            {sections.map(({ title, items }) => (
-              <Box key={title} sx={{ my: 2 }}>
-                <Typography variant="subtitle2" gutterBottom>
-                  {title}
-                </Typography>
-                <List dense>
-                  {items.map(item => (
-                    <ListItem key={item} sx={{ pl: 0 }}>
-                      <ListItemText primary={item} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
-            ))}
-          </CardContent>
-        </Card>
-
-        <Divider sx={{ my: 4 }} />
-
-        {/* Education */}
-        <Typography variant="h6" gutterBottom sx={{ textAlign: 'center' }}>
+      {/* Education */}
+      <Container id="education" sx={{ py: 8, backgroundColor: theme.palette.action.hover }}>
+        <Typography variant="h4" gutterBottom align="center">
           Education
         </Typography>
-        <Card variant="outlined" sx={{ mx: '10%', mb: 4 }}>
-          <CardContent>
-            <Typography variant="subtitle1" fontWeight="bold" sx={{ textAlign: 'center', mb: 1 }}>
-              B.Tech. in Computer Science
-            </Typography>
-            <Typography variant="body2" sx={{ textAlign: 'center' }}>
-              Kalinga Institute of Industrial Technology, Bhubaneswar (CGPA: 8.96) — 2018–2022
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-    </ThemeProvider>
+        <Box sx={{ maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h6">B.Tech. in Computer Science</Typography>
+          <Typography>
+            Kalinga Institute of Industrial Technology, Bhubaneswar (CGPA: 8.96) — 2018–2022
+          </Typography>
+        </Box>
+      </Container>
+
+      {/* Contact */}
+      <Container id="contact" sx={{ py: 8, textAlign: 'center' }}>
+        <Typography variant="h4" gutterBottom>
+          Get in Touch
+        </Typography>
+        <Button variant="contained" href="mailto:as2526019@gmail.com">
+          Email Me
+        </Button>
+      </Container>
+    </>
   )
 }
