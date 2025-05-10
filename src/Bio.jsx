@@ -54,8 +54,7 @@ export default function LandingPage() {
       bullets: [
         'Compliance Automation: Built automated checks for server/VM and Docker image compliance, enabling real-time identification of misconfigurations and enforcing security policies.',
         'Cloud & Infrastructure Monitoring: Delivered Terraform insights with real-time visualizations, enabling better observability of project deployments and resource trends across environments.',
-        'Dynatrace integration for Terraform Enterprise monitoring.',
-        'Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities.'
+        'Log Management: Optimized log forwarding using Splunk to improve monitoring and troubleshooting capabilities. Dynatrace integration for Terraform Enterprise monitoring.'
       ]
     },
     {
