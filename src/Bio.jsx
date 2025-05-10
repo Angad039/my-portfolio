@@ -377,7 +377,7 @@ export default function LandingPage() {
         {/* Contact Section */}
         {/* Contact Section */}
         <Container id="contact" sx={{ py: 8, textAlign: "center" }}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom>
             CONTACT
           </Typography>
           <Box
