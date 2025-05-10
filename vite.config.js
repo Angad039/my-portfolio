@@ -1,7 +1,15 @@
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    // force file-watch polling (helps ensure rebuild on every save)
+    watch: {
+      usePolling: true,
+    },
+    // you can also tweak host/port here
+    hmr: true,
+  },
 })
