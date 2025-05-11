@@ -406,7 +406,7 @@ export default function LandingPage() {
 
         {/* Contact Section */}
         <Container id="contact" sx={{ py: 8, textAlign: 'center' }}>
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h4" align="center" gutterBottom >
             CONTACT
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, flexWrap: 'wrap', mt: 2 }}>
