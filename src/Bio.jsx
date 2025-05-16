@@ -17,6 +17,21 @@ import {
   ListItem,
   ListItemText
 } from "@mui/material";
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiExpress,
+  SiSequelize,
+  SiTerraform,
+  SiAnsible,
+  SiDocker,
+  SiSplunk,
+  SiDynatrace,
+  SiGrafana,
+} from "react-icons/si";
+import { FaAws, FaMicrosoft} from "react-icons/fa";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
@@ -27,10 +42,12 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import CodeIcon from "@mui/icons-material/Code";
 import stateStreetLogo from "./assets/stateStreet.png";
 import kiitLogo from "./assets/kiit.png";
 import resumeUrl from "./assets/AngadSinghResume.pdf";
+import GitHubActionIcon  from "./assets/git.jpg"
+import kibanaIcon from "./assets/kibana.jpg"
+import materialUIIcon from "./assets/mui.jpg"
 
 export default function LandingPage() {
   const [mode, setMode] = useState("light");
@@ -66,6 +83,26 @@ export default function LandingPage() {
     'React.js','JavaScript','TypeScript','Material UI','Node.js','Express.js','Sequelize',
     'Terraform','Ansible','GitHub Actions','Docker','AWS','Azure','Splunk','Dynatrace', 'Grafana', 'kibana'
   ];
+
+  const iconMap = {
+    'React.js': <SiReact size={24} color="#61DAFB" />,
+    'JavaScript': <SiJavascript size={24} color="#F7DF1E" />,
+    'TypeScript': <SiTypescript size={24} color="#3178C6" />,
+    'Material UI': <Avatar src={materialUIIcon} variant="rounded" sx={{ width:24, height:24, mr:1 }} />,  
+    'Node.js': <SiNodedotjs size={24} color="#339933" />,
+    'Express.js': <SiExpress size={24} color="#000000" />,
+    'Sequelize': <SiSequelize size={24} color="#52B0E7" />,
+    'Terraform': <SiTerraform size={24} color="#623CE4" />,
+    'Ansible': <SiAnsible size={24} color="#EE0000" />,
+    'GitHub Actions': <GitHubActionIcon width={24} style={{ marginRight: 8 }} />, 
+    'Docker': <SiDocker size={24} color="#2496ED" />,
+    'AWS': <FaAws size={24} color="#FF9900" />,
+    'Azure': <FaMicrosoft size={24} color="#0089D6" />,
+    'Splunk': <SiSplunk size={24} color="#191919" />,
+    'Dynatrace': <SiDynatrace size={24} color="#00BB9C" />,
+    'Grafana': <SiGrafana size={24} color="#F46800" />,
+    'Kibana': <Avatar src={kibanaIcon} variant="rounded" sx={{ width:24, height:24, mr:1 }} />
+  };
 
   const experienceEntries = [
     {
@@ -176,10 +213,9 @@ export default function LandingPage() {
               textAlign: 'center'
             }}
           >
-            <Avatar
-              src="/avatar.jpg"
+                  <Avatar
               sx={{ width: 120, height: 120, mb: 2, border: '4px solid #fff' }}
-            />
+            > A </Avatar>
             <Typography variant="h2" color="#fff" gutterBottom>
               Hi, I'm Angad Pal Singh
             </Typography>
@@ -228,35 +264,15 @@ export default function LandingPage() {
 
         {/* Skills Section */}
         <Container id="skills" sx={{ py: 8 }}>
-          <Typography variant="h4" align="center" gutterBottom>
-            SKILLS
-          </Typography>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: 2,
-              mt: 4
-            }}
-          >
+          <Typography variant="h4" align="center" gutterBottom>SKILLS</Typography>
+          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2, mt: 4 }}>
             {skills.map((skill, idx) => {
-              const color =
-                idx % 2 === 0
-                  ? theme.palette.secondary.main
-                  : theme.palette.primary.light;
+              const color = idx % 2 === 0 ? theme.palette.secondary.main : theme.palette.primary.light;
+              console.log(skill)
               return (
-                <Box
-                  key={skill}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    border: `2px solid ${color}`,
-                    borderRadius: 2,
-                    p: 2
-                  }}
-                >
-                  <CodeIcon sx={{ mr: 1, color }} />
-                  <Typography>{skill}</Typography>
+                <Box key={skill} sx={{ display: 'flex', alignItems: 'center', border: `2px solid ${color}`, borderRadius: 2, p: 2 }}>
+                  {iconMap[skill]}
+                  <Typography sx={{ ml: 1 }}>{skill}</Typography>
                 </Box>
               );
             })}
