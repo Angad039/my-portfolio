@@ -80,28 +80,61 @@ export default function LandingPage() {
   const bioText = `Results-driven Full Stack Engineer with 3+ years of experience building scalable, secure web applications using React.js, Node.js, Express.js, and Sequelize. Expertise in DevOps automation, CI/CD pipelines (GitHub Actions, Ansible), containerization (Docker), and real-time infrastructure monitoring.`;
 
   const skills = [
-    'React.js','JavaScript','TypeScript','Material UI','Node.js','Express.js','Sequelize',
-    'Terraform','Ansible','GitHub Actions','Docker','AWS','Azure','Splunk','Dynatrace', 'Grafana', 'kibana'
+    'React.js',
+    'JavaScript',
+    'TypeScript',
+    'Material UI',
+    'Node.js',
+    'Express.js',
+    'Sequelize',
+    'Terraform',
+    'Ansible',
+    'GitHub Actions',
+    'Docker',
+    'AWS',
+    'Azure',
+    'Splunk',
+    'Dynatrace',
+    'Grafana',
+    'Kibana',
   ];
 
   const iconMap = {
-    'React.js': <SiReact size={24} color="#61DAFB" />,
-    'JavaScript': <SiJavascript size={24} color="#F7DF1E" />,
-    'TypeScript': <SiTypescript size={24} color="#3178C6" />,
-    'Material UI': <Avatar src={materialUIIcon} variant="rounded" sx={{ width:24, height:24, mr:1 }} />,  
-    'Node.js': <SiNodedotjs size={24} color="#339933" />,
-    'Express.js': <SiExpress size={24} color="#000000" />,
-    'Sequelize': <SiSequelize size={24} color="#52B0E7" />,
-    'Terraform': <SiTerraform size={24} color="#623CE4" />,
-    'Ansible': <SiAnsible size={24} color="#EE0000" />,
-    'GitHub Actions': <GitHubActionIcon width={24} style={{ marginRight: 8 }} />, 
-    'Docker': <SiDocker size={24} color="#2496ED" />,
-    'AWS': <FaAws size={24} color="#FF9900" />,
-    'Azure': <FaMicrosoft size={24} color="#0089D6" />,
-    'Splunk': <SiSplunk size={24} color="#191919" />,
-    'Dynatrace': <SiDynatrace size={24} color="#00BB9C" />,
-    'Grafana': <SiGrafana size={24} color="#F46800" />,
-    'Kibana': <Avatar src={kibanaIcon} variant="rounded" sx={{ width:24, height:24, mr:1 }} />
+    'React.js': <SiReact size={24} color="#61DAFB" />, 
+    'JavaScript': <SiJavascript size={24} color="#F7DF1E" />, 
+    'TypeScript': <SiTypescript size={24} color="#3178C6" />, 
+    'Material UI': (
+      <Avatar
+        src={materialUIIcon}
+        variant="rounded"
+        sx={{ width: 24, height: 24, mr: 1 }}
+      />
+    ),
+    'Node.js': <SiNodedotjs size={24} color="#339933" />, 
+    'Express.js': <SiExpress size={24} color="#000000" />, 
+    'Sequelize': <SiSequelize size={24} color="#52B0E7" />, 
+    'Terraform': <SiTerraform size={24} color="#623CE4" />, 
+    'Ansible': <SiAnsible size={24} color="#EE0000" />, 
+    'GitHub Actions': (
+      <Avatar
+        src={GitHubActionIcon}
+        variant="rounded"
+        sx={{ width: 24, height: 24, mr: 1 }}
+      />
+    ),
+    'Docker': <SiDocker size={24} color="#2496ED" />, 
+    'AWS': <FaAws size={24} color="#FF9900" />, 
+    'Azure': <FaMicrosoft size={24} color="#0089D6" />, 
+    'Splunk': <SiSplunk size={24} color="#191919" />, 
+    'Dynatrace': <SiDynatrace size={24} color="#00BB9C" />, 
+    'Grafana': <SiGrafana size={24} color="#F46800" />, 
+    'Kibana': (
+      <Avatar
+        src={kibanaIcon}
+        variant="rounded"
+        sx={{ width: 24, height: 24, mr: 1 }}
+      />
+    ),
   };
 
   const experienceEntries = [
